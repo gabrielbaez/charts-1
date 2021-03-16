@@ -35,13 +35,13 @@ questions:
           schema:
             type: string
             required: true
-            default: "linuxserver/transmission"
+            default: "haugene/transmission-openvpn"
         - variable: tag
           description: "Tag to use for specified image"
           label: "Image Tag"
           schema:
             type: string
-            default: "version-3.00-r2"
+            default: "latest"
         - variable: pullPolicy
           description: "Docker Image Pull Policy"
           label: "Image Pull Policy"
