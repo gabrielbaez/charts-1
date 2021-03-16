@@ -1,0 +1,37 @@
+apiVersion: v2
+kubeVersion: ">=1.16.0-0"
+name: transmission-openvpn
+version: 1.6.4
+# upstream_version:
+appVersion: "version-v0.17.153"
+description: transmission bitorrent client with openvpn support.
+type: application
+deprecated: false
+home: https://github.com/truecharts/charts/tree/master/charts/transmission-openvpn
+icon: https://github.com/Jackett/Jackett/blob/phantom-develop/Logo/512.png?raw=true
+keywords:
+  - transmission
+  - torrent
+  - usenet
+sources:
+  - https://hub.docker.com/r/haugene/transmission-openvpn/
+dependencies:
+  - name: common
+    repository: https://charts.truecharts.org/
+    version: 1.6.7
+    # condition:
+    # tags:
+    # import-values:
+    # alias:
+securityContext:
+       capabilities:
+         add:
+           - NET_ADMIN   
+maintainers:
+  - name: TrueCharts
+    email: info@truecharts.org
+    url: truecharts.org
+  - name: Kjeld Schouten-Lebbing
+    email: kjeld@schouten-lebbing.nl
+    url: truecharts.org
+# annotations:
