@@ -1,0 +1,19 @@
+apiVersion: v1
+description: Commercial FTP CLient Crush FTP
+name: crushftp
+version: 10
+appVersion: master
+keywords:
+- FTP Server
+home: https://www.crushftp.com/index.html
+icon: https://www.crushftp.com/images/logo.jpg
+sources:
+- https://github.com/gabrielbaez/Docker-CrushFTP-1
+upstream_version: 1
+dependencies:
+  - name: common
+    repository:  https://charts.truecharts.org/
+    version: 1.6.7
+
+maintainers:
+  - name: Gabriel Baez
