@@ -3,8 +3,8 @@ groups:
     description: "configure container image"
   - name: "Configuration"
     description: "additional container configuration"
-  - name: "Container Environment Variables"
-    description: "Set the environment that will be visible to the container"
+  - name: "Transmission Configuration"
+    description: "Configuration details for Transmission"
   - name: "Networking"
     description: "network / service configuration"
   - name: "Storage"
@@ -83,7 +83,8 @@ questions:
     schema:
       type: int
       default: 568
-      
+
+ 
   - variable: UMASK
     group: "Configuration"
     label: "UMASK (advanced)"
@@ -113,81 +114,65 @@ questions:
                 label: "Value"
                 schema:
                   type: string
-              - variable: OPENVPN_PROVIDER
-                label: "OPENVPN_PROVIDER"
-                description: "Sets the OpenVPN provider to use"
-                schema:
-                  type: string
-                  default: PIA
-              - variable: OPENVPN_USERNAME
-                label: "OPENVPN_USERNAME"
-                description: "Your OpenVPN username"
-                schema:
-                  type: string
-                  default: asdf
-             - variable: OPENVPN_PASSWORD
-               label: "OPENVPN_PASSWORD"
-               description: "Your OpenVPN password"
-               schema:
-                 type: string
-                 default: asdf
-             - variable: OPENVPN_CONFIG
-               label: "OPENVPN_CONFIG"
-               description: "Sets the OpenVPN endpoint to connect to."
-               schema:
-                  type: string
-                  default: mexico
-             - variable: GLOBAL_APPLY_PERMISSIONS  
-               group: "Container Environment Variables"
-               label: "GLOBAL_APPLY_PERMISSIONS"
-               description: "Disable setting of default permissions  "
-               schema:
-                 type: boolean 
-                 default: false
-             - variable: TRANSMISSION_WEB_UI  
-               label: "TRANSMISSION_WEB_UI"
-               description: "Use the specified bundled web UI i.e transmission-web-control,flood,kettu,combustion"
-               schema:
-                 type: string
-                 default: transmission-web-control    
-             - variable: HEALTH_CHECK_HOST
-               group: "Container Environment Variables"
-               label: "HEALTH_CHECK_HOST"
-               description: "this host is pinged to check if the network connection still works"
-               schema:
-                  type: string
-                  default: google.com
-             - variable: LOCAL_NETWORK
-               label: "LOCAL_NETWORK"
-               description: "Sets the local network that should have access. Accepts comma separated list"
-               schema:
-                  type: string
-                  default: 192.168.0.0/24
-             - variable: ENABLE_UFW
-               group: "Container Environment Variables"
-               label: "ENABLE_UFW"
-               description: "Enables the firewall"
-               schema:
-                  type: boolean
-                  default: false
-             - variable: UFW_ALLOW_GW_NET
-               label: "UFW_ALLOW_GW_NET"
-               description: "Allows the gateway network through the firewall. Off defaults to only allowing the gateway."
-               schema:
-                  type: boolean
-                  default: true
-             - variable: UFW_EXTRA_PORTS
-               label: "UFW_EXTRA_PORTS"
-               description: "Allows the comma separated list of ports through the firewall. Respects UFW_ALLOW_GW_NET."
-               schema:
-                  type: string
-                  default: 9910,23561,443
-             - variable: UFW_DISABLE_IPTABLES_REJECT
-               label: "UFW_DISABLE_IPTABLES_REJECT"
-               description: "Allows the comma separated list of ports through the firewall. Respects UFW_ALLOW_GW_NET."
-               schema:
-                  type: boolean
-                  default: true             
+
+#Transmission OPENVPN Configuration
+
+- variable: transmission-config
+    description: "Nextcloud configuration details"
+    label: "Transmission Configuration"
+    group: "Transmission Configuration"
+    schema:
+      type: dict
+      required: true
+      additional_attrs: true
+      attrs:
+          - variable: OPENVPN_PROVIDER
+            label: "OPENVPN_PROVIDER"
+            description: "Sets the OpenVPN provider to use"
+            schema:
+              type: string
+              default: PIA
+              required: true
+          - variable: OPENVPN_USERNAME
+            label: "OPENVPN_USERNAME"
+            description: "Your OpenVPN username"
+            schema:
+               type: string
+               default: p123456
+               required: true
+          - variable: OPENVPN_PASSWORD
+            label: "OPENVPN_PASSWORD"
+            description: "Your OpenVPN password"
+            schema:
+               type: string
+               private: true
+               default: changeme
+               required: true
+          - variable: OPENVPN_CONFIG
+            label: "OPENVPN_CONFIG"
+            description: "Sets the OpenVPN endpoint to connect to."
+            schema:
+               type: string
+               default: mexico
+               required: true
+          - variable: GLOBAL_APPLY_PERMISSIONS  
+            label: "GLOBAL_APPLY_PERMISSIONS"
+            description: "Disable setting of default permissions  "
+            schema:
+               type: boolean 
+               default: false
+          - variable: TRANSMISSION_WEB_UI  
+            label: "TRANSMISSION_WEB_UI"
+            description: "Use the specified bundled web UI i.e transmission-web-control,flood,kettu,combustion"
+            schema:
+               type: string
+               default: transmission-web-control    
+          - variable: LOCAL_NETWORK
+            label: "LOCAL_NETWORK"
+            description: "Sets the local network that should have access. Accepts comma separated list"
+            schema:
+               type: string
+               default: 192.168.0.0/24
   # Enable Host Network
   - variable: hostNetwork
     group: "Networking"

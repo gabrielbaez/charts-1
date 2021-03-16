@@ -1,7 +1,7 @@
 # Default values for Transmission
 
 image:
-  repository: linuxserver/transmission
+  repository: haugene/transmission-openvpn
   pullPolicy: IfNotPresent
   tag: latest
 
@@ -23,8 +23,15 @@ persistence:
     emptyDir: false
 
 ## TrueCharts Values
-
-
+#Transmission Default Configuration
+transmission-config:
+ OPENVPN_PROVIDER: PIA
+ OPENVPN_USERNAME: p123456
+ OPENVPN_PASSWORD: changeme
+ OPENVPN_CONFIG: mexico
+ GLOBAL_APPLY_PERMISSIONS: false
+ TRANSMISSION_WEB_UI: transmission-web-control 
+ LOCAL_NETWORK: 192.168.0.0/24
 
 
 #appVolumeMounts:
