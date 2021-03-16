@@ -116,9 +116,8 @@ questions:
                   type: string
 
 #Transmission OPENVPN Configuration
-
-- variable: transmission-config
-    description: "Nextcloud configuration details"
+  - variable: transmission-config
+    description: "Transmission configuration details"
     label: "Transmission Configuration"
     group: "Transmission Configuration"
     schema:
