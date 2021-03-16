@@ -1,9 +1,9 @@
-# Default values for Jackett.
+# Default values for Transmission
 
 image:
   repository: linuxserver/transmission
   pullPolicy: IfNotPresent
-  tag: version-3.00-r2
+  tag: latest
 
 strategy:
   type: Recreate
@@ -58,3 +58,7 @@ appAdditionalServices:
       protocol: UDP
       targetPort: 51413
       nodePort: 51413
+securityContext:
+       capabilities:
+         add:
+           - NET_ADMIN   
