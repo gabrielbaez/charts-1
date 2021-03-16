@@ -82,7 +82,7 @@ questions:
       type: int
       default: 568
 
- - variable: OPENVPN_PROVIDER
+  - variable: OPENVPN_PROVIDER
     group: "Configuration"
     label: "OPENVPN_PROVIDER"
     description: "Sets the OpenVPN provider to use"
@@ -90,7 +90,7 @@ questions:
       type: string
       default: PIA
 
-- variable: OPENVPN_USERNAME
+  - variable: OPENVPN_USERNAME
     group: "Configuration"
     label: "OPENVPN_USERNAME"
     description: "Your OpenVPN username"
@@ -98,7 +98,7 @@ questions:
       type: string
       default: asdf
 
-- variable: OPENVPN_PASSWORD
+  - variable: OPENVPN_PASSWORD
     group: "Configuration"
     label: "OPENVPN_PASSWORD"
     description: "Your OpenVPN password"
@@ -106,7 +106,7 @@ questions:
       type: string
       default: asdf
 
- variable: OPENVPN_CONFIG
+  - variable: OPENVPN_CONFIG
     group: "Configuration"
     label: "OPENVPN_CONFIG"
     description: "Sets the OpenVPN endpoint to connect to."
@@ -114,7 +114,7 @@ questions:
       type: string
       default: mexico
 
-  variable: GLOBAL_APPLY_PERMISSIONS  
+  - variable: GLOBAL_APPLY_PERMISSIONS  
     group: "Configuration"
     label: "GLOBAL_APPLY_PERMISSIONS"
     description: "Disable setting of default permissions  "
@@ -122,7 +122,7 @@ questions:
       type: string
       default: true
 
- variable: TRANSMISSION_WEB_UI  
+  - variable: TRANSMISSION_WEB_UI  
     group: "Configuration"
     label: "TRANSMISSION_WEB_UI"
     description: "Use the specified bundled web UI i.e transmission-web-control,flood,kettu,combustion"
@@ -130,21 +130,13 @@ questions:
       type: string
       default: transmission-web-control    
 
- variable: LOCAL_NETWORK
+  - variable: LOCAL_NETWORK
     group: "Configuration"
     label: "LOCAL_NETWORK"
     description: "Sets the local network that should have access. Accepts comma separated list"
     schema:
       type: string
       default: 192.168.0.0/24
-      
-  variable: TZ
-    group: "Configuration"
-    label: "Timezone"
-    description: "Set Timezone"
-    schema:
-      type: string
-      default: UTC         
       
   - variable: UMASK
     group: "Configuration"
