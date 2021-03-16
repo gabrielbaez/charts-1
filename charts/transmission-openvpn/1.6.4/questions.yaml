@@ -119,7 +119,7 @@ questions:
     label: "GLOBAL_APPLY_PERMISSIONS"
     description: "Disable setting of default permissions  "
     schema:
-      type: string
+      type: boolean 
       default: true
 
   - variable: TRANSMISSION_WEB_UI  
