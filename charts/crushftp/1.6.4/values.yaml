@@ -48,17 +48,17 @@ appAdditionalServices:
     enabled: true
     type: ClusterIP
     port:
-      port: 51413
-      name: ftp-tcp
+      port: 9222
+      name: sftp-tcp
       protocol: TCP
-      targetPort: 51413
-      nodePort: 51413
+      targetPort: 9222
+      nodePort: 9222
   udp:
     enabled: true
     type: ClusterIP
     port:
-      port: 9022
-      name: bittorrent-udp
+      port: 9222
+      name: sftp-udp
       protocol: UDP
-      targetPort: 9022
-      nodePort: 9022
+      targetPort: 9222
+      nodePort: 9222

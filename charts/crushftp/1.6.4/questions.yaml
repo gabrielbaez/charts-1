@@ -171,12 +171,12 @@ questions:
           label: "Service type"
           schema:
             type: string
-            default: "ClusterIP"
+            default: "NodePort"
             enum:
               - value: "NodePort"
                 description: "NodePort"
-              - value: "ClusterIP"
-                description: "ClusterIP"
+              - value: "NodeIP"
+                description: "NodeIP"
             show_subquestions_if: "NodePort"
             subquestions:
               - variable: port
@@ -195,8 +195,8 @@ questions:
                       schema:
                         type: int
                         min: 9000
-                        max: 65535
-                        default: 36052
+                        max: 9030
+                        default: 9000
                         required: true
 
   - variable: appAdditionalServices
@@ -220,12 +220,12 @@ questions:
                 label: "Service type"
                 schema:
                   type: string
-                  default: "ClusterIP"
+                  default: "NodeIP"
                   enum:
                     - value: "NodePort"
                       description: "NodePort"
-                    - value: "ClusterIP"
-                      description: "ClusterIP"
+                    - value: "NodeIP"
+                      description: "NodeIP"
               - variable: port
                 label: "Port configuration"
                 schema:
@@ -235,7 +235,7 @@ questions:
                       label: "port name"
                       schema:
                         type: string
-                        default: "ftp-tcp"
+                        default: "sftp-tcp"
                         hidden: true
                     - variable: protocol
                       label: "Protocol"
@@ -280,12 +280,12 @@ questions:
                 label: "Service type"
                 schema:
                   type: string
-                  default: "ClusterIP"
+                  default: "NodeIP"
                   enum:
                     - value: "NodePort"
                       description: "NodePort"
-                    - value: "ClusterIP"
-                      description: "ClusterIP"
+                    - value: "NodeIP"
+                      description: "NodeIP"
               - variable: port
                 label: "Port configuration"
                 schema:
@@ -295,7 +295,7 @@ questions:
                       label: "port name"
                       schema:
                         type: string
-                        default: "torrent-udp"
+                        default: "sftp-udp"
                         hidden: true
                     - variable: protocol
                       label: "Protocol"
@@ -572,11 +572,11 @@ questions:
                       label: "Select Entrypoint"
                       schema:
                         type: string
-                        default: "torrent-tcp"
+                        default: "sftp-tcp"
                         required: true
                         enum:
-                          - value: "torrent-tcp"
-                            description: "Torrent-TCP: port 51413"
+                          - value: "sftp-tcp"
+                            description: "SFTP-TCP: port 9222"
                     - variable: certType
                       label: "Select Certificate Type"
                       schema:
@@ -616,5 +616,5 @@ questions:
                         default: "torrent-udp"
                         required: true
                         enum:
-                          - value: "torrent-udp"
-                            description: "Torrent-UDP: port 51413"
+                          - value: "sftp-udp"
+                            description: "Torrent-UDP: port 9222"
