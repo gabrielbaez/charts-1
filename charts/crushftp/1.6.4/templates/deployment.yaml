@@ -36,8 +36,8 @@ spec: {{ include "common.deployment.common_spec" . | nindent 2 }}
                   fieldPath: metadata.namespace
             {{ $envList := (default list .Values.environmentVariables) }}
             {{ $envList = mustAppend $envList (dict "name" "TZ" "value" .Values.timezone) }}
-            {{ $envList = mustAppend $envList (dict "name" "CRUSH_ADMIN_USER" "valueFromSecret" true "secretName" $secretName "secretKey" "crushftp-username") }}
-            {{ $envList = mustAppend $envList (dict "name" "CRUSH_ADMIN_PASSWORD" "valueFromSecret" true "secretName" $secretName "secretKey" "crushftp-password") }}
+            {{ $envList = mustAppend $envList (dict "name" "CRUSH_ADMIN_USER" "valueFromSecret" true "secretName" $secretName "secretKey" "CRUSH_ADMIN_USER") }}
+            {{ $envList = mustAppend $envList (dict "name" "CRUSH_ADMIN_PASSWORD" "valueFromSecret" true "secretName" $secretName "secretKey" "CRUSH_ADMIN_PASSWORD") }}
             {{ include "common.containers.environmentVariables" (dict "environmentVariables" $envList) | nindent 12 }}
           readinessProbe:
             httpGet:
