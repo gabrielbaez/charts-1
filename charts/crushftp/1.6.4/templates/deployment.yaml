@@ -1,0 +1,61 @@
+{{ include "common.deployment.common_config" . | nindent 0 }}
+spec: {{ include "common.deployment.common_spec" . | nindent 2 }}
+  template: {{ include "common.deployment.pod.metadata" . | nindent 4 }}
+    spec:
+    {{- if .Values.hostNetwork }}
+      hostNetwork: {{ .Values.hostNetwork }}
+      dnsPolicy: ClusterFirstWithHostNet
+    {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          {{ include "common.containers.imageConfig" .Values.image | nindent 10 }}
+          {{ include "common.storage.allContainerVolumeMounts" .Values | nindent 10 }}
+          ports:
+          - name: crushftp
+            protocol: TCP
+            containerPort: 9080
+          {{- if .Values.hostNetwork }}
+            hostPort: {{ .Values.CRUSH_ADMIN_PORT.port }}
+          {{- end }}
+          - name: ftp-sftp
+            protocol: TCP
+            containerPort: 9022
+          - name: ftp-sftp-udp
+            protocol: UDP
+            containerPort: 9022
+          - name: ftp-ftp-tcp
+            protocol: TCP
+            containerPort: 9021
+          - name: ftp-ftp-udp
+            protocol: UDP
+            containerPort: 9021
+          env:
+            - name: KUBE_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            {{ $envList := (default list .Values.environmentVariables) }}
+            {{ $envList = mustAppend $envList (dict "name" "TZ" "value" .Values.timezone) }}
+            {{ $envList = mustAppend $envList (dict "name" "CRUSH_ADMIN_USER" "valueFromSecret" true "secretName" $secretName "secretKey" "crushftp-username") }}
+            {{ $envList = mustAppend $envList (dict "name" "CRUSH_ADMIN_PASSWORD" "valueFromSecret" true "secretName" $secretName "secretKey" "crushftp-password") }}
+            {{ include "common.containers.environmentVariables" (dict "environmentVariables" $envList) | nindent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            failureThreshold: 5
+            periodSeconds: 15
+          livenessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            failureThreshold: 5
+            periodSeconds: 15
+          startupProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 5
+            failureThreshold: 40
+            periodSeconds: 15
+{{ include "common.storage.allAppVolumes" .Values | nindent 6 }}      
