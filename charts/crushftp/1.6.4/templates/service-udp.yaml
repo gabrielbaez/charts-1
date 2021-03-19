@@ -1,6 +1,5 @@
 {{ $ports := list }}
 {{ $ports = mustAppend $ports (dict "name" "ftp-sftp-udp" "port" 9022 "protocol"  "UDP" "targetPort" "ftp-sftp-udp") }}
-{{ $ports = mustAppend $ports (dict "name" "ftp-sftp-udp" "port" 9022 "protocol"  "UDP" "targetPort" "ftp-sftp-udp") }}
 {{ $ports = mustAppend $ports (dict "name" "ftp-ftp-udp"  "port" 9021  "protocol" "UDP" "targetPort" "ftp-ftp-udp") }}
 {{ $params := . }}
 {{ $_ := set $params "commonService" (dict "type" "ClusterIP" "ports" $ports "nameSuffix" "udp" ) }}
