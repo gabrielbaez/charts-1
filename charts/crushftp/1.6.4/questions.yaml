@@ -17,7 +17,8 @@ portals:
     host:
       - "$node_ip"
     ports:
-      - "$variable-service.CRUSH_ADMIN_PORT"
+      - "$variable-crushftpService.port"
+    path: "/WebInterface"
 
 questions:
   # Image related
@@ -144,21 +145,7 @@ questions:
             schema:
                type: string
                default: http
-               required: true
- # Port configuration
-  - variable: crushftpServiceTCP
-    label: "Configure CrushFTP TCP Service"
-    group: "Networking"
-    schema:
-      type: dict
-      attrs:
-        - variable: port
-          label: "Port to expose for CrushFTP UI"
-          schema:
-            type: int
-            min: 9000
-            max: 65535
-            default: 8080           
+               required: true 
   # Enable Host Network
   - variable: hostNetwork
     group: "Networking"
@@ -167,6 +154,43 @@ questions:
       type: boolean
       default: false
 
+ - variable: service
+    group: "Networking"
+    label: "Configure Service"
+    schema:
+      type: dict
+      attrs:
+        - variable: type
+          label: "Service type"
+          schema:
+            type: string
+            default: "ClusterIP"
+            enum:
+              - value: "NodePort"
+                description: "NodePort"
+              - value: "ClusterIP"
+                description: "ClusterIP"
+            show_subquestions_if: "NodePort"
+            subquestions:
+              - variable: port
+                label: "Port configuration"
+                schema:
+                  type: dict
+                  attrs:
+                    - variable: port
+                      label: "container port"
+                      schema:
+                        type: int
+                        default: 8080
+                        editable: false
+                    - variable: nodePort
+                      label: "Node Port to expose for UI"
+                      schema:
+                        type: int
+                        min: 9000
+                        max: 65535
+                        default: 9080
+                        required: true
 ## TrueCharts Specific
 
   - variable: appVolumeMounts
