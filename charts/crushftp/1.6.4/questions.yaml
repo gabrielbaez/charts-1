@@ -149,7 +149,7 @@ questions:
                required: true
           - variable: CRUSH_ADMIN_PORT 
             label: "CRUSH_ADMIN_PORT"
-            description: "ort for Admin Web Console"
+            description: "Port for Admin Web Console"
             schema:
                type: int
                min: 9000
