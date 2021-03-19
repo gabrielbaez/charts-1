@@ -1,4 +1,4 @@
-{{ $svc := .Values.crushftpServiceTCP }}
+{{ $svc := .Values.service }}
 {{ $ports := list }}
 {{ $ports = mustAppend $ports (dict "name" "crushftp" "port" $svc.port "nodePort" $svc.port "targetPort" "crushftp") }}
 {{ $ports = mustAppend $ports (dict "name" "ftp-sftp" "port" 9022 "targetPort" "crushftp") }}
