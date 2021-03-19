@@ -4,13 +4,11 @@ groups:
   - name: "Configuration"
     description: "additional container configuration"
   - name: "CrushFTP Configuration"
-    description: "Configuration details for Transmission"
+    description: "Configuration details for CrushFTP"
   - name: "Networking"
     description: "network / service configuration"
   - name: "Storage"
     description: "configure app volume mounts"
-  - name: "Ingress"
-    description: "Reverse Proxy configuration"
 
 portals:
   web_portal:
