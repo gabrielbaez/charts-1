@@ -191,6 +191,136 @@ questions:
                         max: 65535
                         default: 9080
                         required: true
+
+  - variable: appAdditionalServices
+    group: "Networking"
+    label: "Configure additional services"
+    schema:
+      type: dict
+      attrs:
+        - variable: tcp
+          label: ""
+          schema:
+            type: dict
+            attrs:
+              - variable: enabled
+                label: "Enable TCP port for FTP Connections"
+                schema:
+                  type: boolean
+                  default: true
+                  hidden: true
+              - variable: type
+                label: "Service type"
+                schema:
+                  type: string
+                  default: "ClusterIP"
+                  enum:
+                    - value: "NodePort"
+                      description: "NodePort"
+                    - value: "ClusterIP"
+                      description: "ClusterIP"
+              - variable: port
+                label: "Port configuration"
+                schema:
+                  type: dict
+                  attrs:
+                    - variable: name
+                      label: "port name"
+                      schema:
+                        type: string
+                        default: "ftp-tcp"
+                        hidden: true
+                    - variable: protocol
+                      label: "Protocol"
+                      schema:
+                        type: string
+                        default: "TCP"
+                        hidden: true
+                    - variable: port
+                      label: "container port"
+                      schema:
+                        type: int
+                        default: 51413
+                        editable: false
+                        hidden: true
+                    - variable: targetport
+                      label: "container targetport"
+                      schema:
+                        type: int
+                        default: 51413
+                        editable: false
+                        hidden: true
+                    - variable: nodePort
+                      label: "Node Port to expose"
+                      schema:
+                        type: int
+                        min: 9000
+                        max: 65535
+                        default: 51413
+                        required: false
+        - variable: udp
+          label: ""
+          schema:
+            type: dict
+            attrs:
+              - variable: enabled
+                label: "Enable UDP port for FTP  Connections"
+                schema:
+                  type: boolean
+                  default: true
+                  hidden: true
+              - variable: type
+                label: "Service type"
+                schema:
+                  type: string
+                  default: "ClusterIP"
+                  enum:
+                    - value: "NodePort"
+                      description: "NodePort"
+                    - value: "ClusterIP"
+                      description: "ClusterIP"
+              - variable: port
+                label: "Port configuration"
+                schema:
+                  type: dict
+                  attrs:
+                    - variable: name
+                      label: "port name"
+                      schema:
+                        type: string
+                        default: "ftp-udp"
+                        hidden: true
+                    - variable: protocol
+                      label: "Protocol"
+                      schema:
+                        type: string
+                        default: "UDP"
+                        hidden: true
+                    - variable: port
+                      label: "container port"
+                      schema:
+                        type: int
+                        default: 51413
+                        editable: false
+                        hidden: true
+                    - variable: targetport
+                      label: "container targetport"
+                      schema:
+                        type: int
+                        default: 51413
+                        editable: false
+                        hidden: true
+                    - variable: nodePort
+                      label: "Node Port to expose"
+                      schema:
+                        type: int
+                        min: 9000
+                        max: 65535
+                        default: 51413
+                        required: false
+
+
+
 ## TrueCharts Specific
 
   - variable: appVolumeMounts

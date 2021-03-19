@@ -10,25 +10,6 @@ spec: {{ include "common.deployment.common_spec" . | nindent 2 }}
         - name: {{ .Chart.Name }}
           {{ include "common.containers.imageConfig" .Values.image | nindent 10 }}
           {{ include "common.storage.allContainerVolumeMounts" .Values | nindent 10 }}
-          ports:
-          - name: crushftp
-            protocol: TCP
-            containerPort: 8080
-          {{- if .Values.hostNetwork }}
-            hostPort: {{ .Values.service.port}}
-          {{- end }}
-          - name: ftp-sftp
-            protocol: TCP
-            containerPort: 9022
-          - name: ftp-sftp-udp
-            protocol: UDP
-            containerPort: 9022
-          - name: ftp-ftp-tcp
-            protocol: TCP
-            containerPort: 9021
-          - name: ftp-ftp-udp
-            protocol: UDP
-            containerPort: 9021
           env:
             - name: KUBE_NAMESPACE
               valueFrom:
