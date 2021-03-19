@@ -42,19 +42,19 @@ spec: {{ include "common.deployment.common_spec" . | nindent 2 }}
           readinessProbe:
             httpGet:
               path: /identity
-              port: 32400
+              port: 9080
             failureThreshold: 5
             periodSeconds: 15
           livenessProbe:
             httpGet:
               path: /identity
-              port: 32400
+              port: 9080
             failureThreshold: 5
             periodSeconds: 15
           startupProbe:
             httpGet:
               path: /identity
-              port: 32400
+              port: 9080
             initialDelaySeconds: 5
             failureThreshold: 40
             periodSeconds: 15

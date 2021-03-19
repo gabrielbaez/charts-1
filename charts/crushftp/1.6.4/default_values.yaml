@@ -10,7 +10,7 @@ strategy:
 
 service:
   port:
-    port: 8080
+    port: 9080
 
 env: {}
   # TZ: UTC
@@ -22,15 +22,13 @@ persistence:
     enabled: false
     emptyDir: false
 
-## TrueCharts Values
 
-
-#appVolumeMounts:
-#  config:
-#    enabled: true
-#    emptyDir: false
-#    datasetName: "config"
-#  downloads:
-#    enabled: true
-#    emptyDir: false
-#    datasetName: "downloads"
+appVolumeMounts:
+  config:
+    enabled: true
+    emptyDir: false
+    datasetName: "config"
+  downloads:
+    enabled: true
+    emptyDir: false
+    datasetName: "downloads"

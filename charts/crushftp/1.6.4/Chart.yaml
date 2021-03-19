@@ -9,11 +9,10 @@ home: https://www.crushftp.com/index.html
 icon: https://www.crushftp.com/images/logo.jpg
 sources:
 - https://github.com/gabrielbaez/Docker-CrushFTP-1
-upstream_version: 1
+upstream_version: 2.1.0
 dependencies:
   - name: common
-    repository:  https://charts.truecharts.org/
-    version: 1.6.7
-
+    repository: file://../../../library/common/2101.0.0
+    version: 2101.0.0
 maintainers:
   - name: Gabriel Baez
