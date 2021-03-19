@@ -145,14 +145,20 @@ questions:
                type: string
                default: http
                required: true
-          - variable: CRUSH_ADMIN_PORT 
-            label: "CRUSH_ADMIN_PORT"
-            description: "Port for Admin Web Console"
-            schema:
-               type: int
-               min: 9000
-               max: 65535
-               default: 9080
+ # Port configuration
+  - variable: crushftpServiceTCP
+    label: "Configure CrushFTP TCP Service"
+    group: "Networking"
+    schema:
+      type: dict
+      attrs:
+        - variable: port
+          label: "Port to expose for Plex UI"
+          schema:
+            type: int
+            min: 9000
+            max: 65535
+            default: 9080              
   # Enable Host Network
   - variable: hostNetwork
     group: "Networking"
