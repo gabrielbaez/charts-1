@@ -154,7 +154,7 @@ questions:
       type: boolean
       default: false
 
- - variable: service
+  - variable: service
     group: "Networking"
     label: "Configure Service"
     schema:
