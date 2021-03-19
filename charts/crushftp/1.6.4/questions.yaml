@@ -19,7 +19,7 @@ portals:
     host:
       - "$node_ip"
     ports:
-      - "$variable-service.port.nodePort"
+      - "$variable-CRUSH_ADMIN_PORT"
 
 questions:
   # Image related
