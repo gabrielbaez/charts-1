@@ -116,7 +116,7 @@ questions:
                   type: string
 
 #CrushFTP Configuration
-  - variable: crushftp-config
+  - variable: crushftpconfig
     description: "CrushFTP Configuration details"
     label: "CrushFTP Configuration"
     group: "CrushFTP Configuration"
