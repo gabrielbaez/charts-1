@@ -38,6 +38,7 @@ spec: {{ include "common.deployment.common_spec" . | nindent 2 }}
             {{ $envList = mustAppend $envList (dict "name" "TZ" "value" .Values.timezone) }}
             {{ $envList = mustAppend $envList (dict "name" "CRUSH_ADMIN_USER" "value"  .Values.crushftpconfig.CRUSH_ADMIN_USER) }}
             {{ $envList = mustAppend $envList (dict "name" "CRUSH_ADMIN_PASSWORD" "value" .Values.crushftpconfig.CRUSH_ADMIN_PASSWORD) }}
+            {{ $envList = mustAppend $envList (dict "name" "CRUSH_ADMIN_PORT" "value" .Values.crushftpServiceTCP.port) }}
             {{ include "common.containers.environmentVariables" (dict "environmentVariables" $envList) | nindent 12 }}
           readinessProbe:
             httpGet:
